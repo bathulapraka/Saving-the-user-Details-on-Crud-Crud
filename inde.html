@@ -9,7 +9,7 @@
     <input type="submit" value="submit">
   </form>
   <div id="userDetailsDisplay">
-    
+
 
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.2/axios.min.js"></script>
@@ -35,6 +35,7 @@ var userform = document.getElementById('userform');
       email:email,
       phonenumber:phonenumber
     };
+
     axios.post("https://crudcrud.com/api/5bac9378e1bb432dad00370c007aba40/appointmentdata",initialize)
     .then((response)=>{
         displayuserdetails(response.data)
@@ -44,6 +45,24 @@ var userform = document.getElementById('userform');
         document.body.innerHTML=document.body.innerHTML + "<h2> something went wrong </h2>"
         console.log(err)
     })
+
+
+
+
+    axios.get("https://crudcrud.com/api/5bac9378e1bb432dad00370c007aba40/appointmentdata")
+    .then((response)=>{
+        console.log(response)
+        for(var i=0;i<response.data.length;i++){
+            displayuserdetails(response.data[i])
+        }
+        
+    })
+    .catch((err)=>{
+        console.log(err)
+    })
+
+
+    axios.delete("https://crudcrud.com/api/5bac9378e1bb432dad00370c007aba40/appointmentdata/65879837831c5703e89e3646")
     //json stringfy
    // var userdetails=JSON.stringify(initialize);
 
